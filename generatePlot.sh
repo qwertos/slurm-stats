@@ -16,6 +16,8 @@ touch $TMP_DIR/account.dat
 sacct -L -P --starttime=0601  --format=jobid,partition,user,elapsed,submit,start,end | tail -n +2 > $TMP_DIR/unstandard.psv
 
 mkdir -p $TMP_DIR/unstandard.psv.d/
+
+
 #split -n "l/$CORES_TO_USE" -d $TMP_DIR/unstandard.psv $TMP_DIR/unstandard.psv.d/
 LINES=`wc -l $TMP_DIR/unstandard.psv | awk '{ print $1 ; }'`
 LINES_PER=`echo -e "$CORES_TO_USE\t$LINES" | awk '{ print $2 / ( $1 - 1 ) ;}' | awk -F. '{ print $1; }'`
@@ -35,6 +37,7 @@ done
 while [[ -n `ls /var/lock/slurmplot` ]] ; do
 	sleep 10
 done
+
 
 
 

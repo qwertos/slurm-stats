@@ -10,7 +10,6 @@ CORES_TO_USE=9
 # Ensure tmpdir is in exastince
 mkdir -p $TMP_DIR
 touch $TMP_DIR/unstandard.psv
-touch $TMP_DIR/account.dat
 
 # Collect accounting data
 sacct -L -P --starttime=0601  --format=jobid,partition,user,elapsed,submit,start,end | tail -n +2 > $TMP_DIR/unstandard.psv
@@ -30,12 +29,23 @@ split -l "$LINES_PER" -d $TMP_DIR/unstandard.psv $TMP_DIR/unstandard.psv.d/
 
 mkdir -p /var/lock/slurmplot
 
+rm $TMP_DIR/account.dat
+touch $TMP_DIR/account.dat
 for file in $TMP_DIR/unstandard.psv.d/* ; do
 	cat $file | ./process_section.sh >> $TMP_DIR/account.dat &
 done
 
 while [[ -n `ls /var/lock/slurmplot` ]] ; do
 	sleep 10
+done
+
+
+# list users
+rm $TMP_DIR/users.txt
+touch $TMP_DIR/users.txt
+
+for file in $TMP_DIR/unstandard.psv.d/* ; do
+	cat $file | ./dump_users.sh >> $TMP_DIR/users.txt &
 done
 
 

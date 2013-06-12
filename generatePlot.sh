@@ -55,7 +55,7 @@ done
 
 mv $TMP_DIR/users.txt $TMP_DIR/users.txt.old
 
-cat $TMP_DIR/users.txt.old | ./dump_users.sh > $TMP_DIR/users.txt
+cat $TMP_DIR/users.txt.old | sort | uniq > $TMP_DIR/users.txt
 
 
 		

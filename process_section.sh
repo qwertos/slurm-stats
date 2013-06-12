@@ -25,6 +25,12 @@ while read line ; do
 
 	S_ELAPSED=`echo -e "$U_END\t$U_START" | awk '{ print $1 - $2 ; }'`
 
+# Calculate a "date stamp"
+# 1. Take unix time
+#	2. sec  -> min
+# 3. min  -> hour
+# 4. hour -> day
+# 5. truncate
 	D_START=`echo "$U_START" | awk '{ print ( $1 / ( 60 * 60 * 24 )) ; }' | awk -F'.' '{ print $1 }'`
 
 	echo -e "$PARTITION\t$USERNAME\t$S_ELAPSED\t$U_SUBMIT\t$U_START\t$U_END" 

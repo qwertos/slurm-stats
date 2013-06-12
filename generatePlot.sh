@@ -18,7 +18,10 @@ sacct -L -P --starttime=0601  --format=jobid,partition,user,elapsed,submit,start
 mkdir -p $TMP_DIR/unstandard.psv.d/
 #split -n "l/$CORES_TO_USE" -d $TMP_DIR/unstandard.psv $TMP_DIR/unstandard.psv.d/
 LINES=`wc -l $TMP_DIR/unstandard.psv | awk '{ print $1 ; }'`
-LINES_PER=`echo "$CORES_TO_USE\t$LINES" | awk '{ print $2 / ($1 - 1) ;}'`
+LINES_PER=`echo -e "$CORES_TO_USE\t$LINES" | awk '{ print $2 / ( $1 - 1 ) ;}' | awk -F. '{ print $1; }'`
+echo $CORES_TO_USE
+echo $LINES
+echo $LINES_PER
 
 split -l "$LINES_PER" -d $TMP_DIR/unstandard.psv $TMP_DIR/unstandard.psv.d/
 
@@ -27,6 +30,8 @@ split -l "$LINES_PER" -d $TMP_DIR/unstandard.psv $TMP_DIR/unstandard.psv.d/
 for file in $TMP_DIR/unstandard.psv.d/* ; do
 	cat $file | ./process_section.sh >> $TMP_DIR/account.dat &
 done
+
+
 
 		
 

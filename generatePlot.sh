@@ -49,6 +49,9 @@ for file in $TMP_DIR/unstandard.psv.d/* ; do
 done
 
 
+while [[ -n `ls /var/lock/slurmplot` ]] ; do
+	sleep 10
+done
 
 
 		

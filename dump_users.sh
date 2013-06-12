@@ -11,7 +11,11 @@ mkdir -p /var/lock/slurmplot
 
 touch $LOCK_FILE
 
-cat | awk -F'\t' '{ print $2 ; }' | sort | uniq 
+
+( while read line ; do
+	echo $line | awk -F'|' '{ print $3 ; }' 
+done ) | sort | uniq
+
 
 
 rm -f $LOCK_FILE

@@ -33,7 +33,7 @@ while read line ; do
 # 5. truncate
 	D_START=`echo "$U_START" | awk '{ print ( $1 / ( 60 * 60 * 24 )) ; }' | awk -F'.' '{ print $1 }'`
 
-	echo -e "$PARTITION\t$USERNAME\t$S_ELAPSED\t$U_SUBMIT\t$U_START\t$U_END" 
+	echo -e "$PARTITION\t$USERNAME\t$S_ELAPSED\t$U_SUBMIT\t$U_START\t$U_END\t$D_START" 
 	
 done
 

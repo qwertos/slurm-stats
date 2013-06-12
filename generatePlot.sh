@@ -58,5 +58,12 @@ mv $TMP_DIR/users.txt $TMP_DIR/users.txt.old
 cat $TMP_DIR/users.txt.old | sort | uniq > $TMP_DIR/users.txt
 
 
+
+# Pull User data
+mkdir -p $TMP_DIR/userData
+
+
+
+
 		
 

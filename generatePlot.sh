@@ -3,7 +3,16 @@
 # Author: Aaron Herting
 # License: MIT
 
+function lockcheck {
+	while [[ -n `ls /var/lock/slurmplot` ]] ; do
+		sleep 10
+	done
+}
+
+
+
 TMP_DIR="/dev/shm/accounting"
+USER_LIST="$TMP_DIR/users.txt"
 CORES_TO_USE=9
 
 
@@ -35,10 +44,7 @@ for file in $TMP_DIR/unstandard.psv.d/* ; do
 	cat $file | ./process_section.sh >> $TMP_DIR/account.dat &
 done
 
-while [[ -n `ls /var/lock/slurmplot` ]] ; do
-	sleep 10
-done
-
+lockcheck
 
 # list users
 rm $TMP_DIR/users.txt
@@ -48,10 +54,7 @@ for file in $TMP_DIR/unstandard.psv.d/* ; do
 	cat $file | ./dump_users.sh >> $TMP_DIR/users.txt &
 done
 
-
-while [[ -n `ls /var/lock/slurmplot` ]] ; do
-	sleep 10
-done
+lockcheck
 
 mv $TMP_DIR/users.txt $TMP_DIR/users.txt.old
 
@@ -62,8 +65,13 @@ cat $TMP_DIR/users.txt.old | sort | uniq > $TMP_DIR/users.txt
 # Pull User data
 mkdir -p $TMP_DIR/userData
 
+for user in `cat $USER_LIST` do
+	./process_user.sh $user $USER_LIST &
+done
+
+lockcheck
 
 
 
-		
+	
 

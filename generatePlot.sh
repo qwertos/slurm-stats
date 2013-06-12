@@ -19,7 +19,7 @@ mkdir -p $TMP_DIR/unstandard.psv.d/
 split -n "l/$CORES_TO_USE" -d $TMP_DIR/unstandard.psv $TMP_DIR/unstandard.psv.d/
 
 for file in $TMP_DIR/unstandard.psv.d/* ; do
-	cat $file | process_section.sh >> $TMP_DIR/account.dat &
+	cat $file | ./process_section.sh >> $TMP_DIR/account.dat &
 done
 
 		

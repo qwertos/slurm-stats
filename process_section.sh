@@ -4,6 +4,11 @@
 # License: MIT
 
 
+LOCK_FILE="/var/lock/slurmplot/$BASHPID"
+
+mkdir -p /var/lock/slurmplot
+
+touch $LOCK_FILE
 
 while read line ; do
 	JOB_ID=`echo "$line" | awk -F'|' '{ print $1 ; }'`
@@ -24,5 +29,5 @@ while read line ; do
 	
 done
 
-
+rm -f $LOCK_FILE
 

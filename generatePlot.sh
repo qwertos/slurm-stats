@@ -26,9 +26,14 @@ echo $LINES_PER
 split -l "$LINES_PER" -d $TMP_DIR/unstandard.psv $TMP_DIR/unstandard.psv.d/
 
 
+mkdir -p /var/lock/slurmplot
 
 for file in $TMP_DIR/unstandard.psv.d/* ; do
 	cat $file | ./process_section.sh >> $TMP_DIR/account.dat &
+done
+
+while [[ -n `ls /var/lock/slurmplot` ]] ; do
+	sleep 10
 done
 
 

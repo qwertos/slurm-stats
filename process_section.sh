@@ -3,6 +3,8 @@
 # Author: Aaron Herting
 # License: MIT
 
+
+
 while read line ; do
 	JOB_ID=`echo "$line" | awk -F'|' '{ print $1 ; }'`
 	PARTITION=`echo "$line" | awk -F'|' '{ print $2 ; }'`
@@ -21,5 +23,6 @@ while read line ; do
 	echo -e "$PARTITION\t$USERNAME\t$S_ELAPSED\t$U_SUBMIT\t$U_START\t$U_END" 
 	
 done
+
 
 

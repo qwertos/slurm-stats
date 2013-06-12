@@ -1,6 +1,6 @@
 #!/bin/bash
 
 
-cat | awk -F'\t' '{ print $3 ; }' | sort | uniq 
+cat | awk -F'\t' '{ print $2 ; }' | sort | uniq 
 
 

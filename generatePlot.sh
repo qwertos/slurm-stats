@@ -53,6 +53,10 @@ while [[ -n `ls /var/lock/slurmplot` ]] ; do
 	sleep 10
 done
 
+mv $TMP_DIR/users.txt $TMP_DIR/users.txt.old
+
+cat $TMP_DIR/users.txt.old | ./dump_users.sh > $TMP_DIR/users.txt
+
 
 		
 

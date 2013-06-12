@@ -25,6 +25,8 @@ while read line ; do
 
 	S_ELAPSED=`echo -e "$U_END\t$U_START" | awk '{ print $1 - $2 ; }'`
 
+	D_START=`echo "$U_START" | awk '{ print ( $1 / ( 60 * 60 * 24 )) ; }' | awk -F'.' '{ print $1 }'`
+
 	echo -e "$PARTITION\t$USERNAME\t$S_ELAPSED\t$U_SUBMIT\t$U_START\t$U_END" 
 	
 done

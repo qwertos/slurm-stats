@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-#require './job.rb'
+require './job.rb'
 
 class User
 	attr_accessor :username
@@ -13,6 +13,10 @@ class User
 
 	def add_job job
 		@jobs.push job
+	end
+
+	def total_time_elapsed
+		
 	end
 end
 

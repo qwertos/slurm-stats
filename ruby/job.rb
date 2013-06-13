@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-require 'time'
+require './time.rb'
 require './config.rb'
 
 class Job
@@ -29,6 +29,10 @@ class Job
 
 	def seconds_between first, second
 		return data[second].to_i - data[first].to_i
+	end
+
+	def date_code_of key
+		return data[key].to_i / ( 60 * 60 * 24 )
 	end
 end
 

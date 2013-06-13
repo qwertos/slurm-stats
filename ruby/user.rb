@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 
+require './time.rb'
 require './job.rb'
 
 class User
@@ -20,6 +21,18 @@ class User
 		@jobs.each do |x|
 			toReturn += x.seconds_between :start, :end
 		end
+		return toReturn
+	end
+	
+	def get_usage_days
+		toReturn = {}
+		
+		@jobs.each do |job|
+			start_dc = job.date_code_of :start
+
+			toReturn[start_dc] += job.seconds_between :start, :end
+		end
+		
 		return toReturn
 	end
 end

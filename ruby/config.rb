@@ -1,8 +1,8 @@
 
 
-$TMP_DIR = ".."
-$PSV_DUMP = "#{$TMP_DIR}/test.psv"
-$REGEN_PSV_DUMP = false
+$TMP_DIR = "/dev/shm/accountingrb"
+$PSV_DUMP = "#{$TMP_DIR}/data.psv"
+$REGEN_PSV_DUMP = true
 $SLURM_VALUES = [
 	:jobid,
 	:partition,

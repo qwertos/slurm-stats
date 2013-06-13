@@ -9,13 +9,13 @@ $JOBS = {}
 
 def main
 	if $REGEN_PSV_DUMP then
-		`sacct -L -P --starttime=0601 -n --format=jobid,partition,user,elapsed,submit,start,end > #{$PSV_DUMP}`
+		`sacct -L -P -n --format=#{gen_format_line} > #{$PSV_DUMP}`
 	end
 
 	File.open( $PSV_DUMP , 'r' ) do |file|
 		
 		file.each_line do |line|
-			splitted = line.split( /\|/, 7 )
+			splitted = line.split( /\|/, $SLURM_VALUES.size )
 			
 			temp_job = Hash[ $SLURM_VALUES.zip(splitted)]
 			
@@ -23,13 +23,14 @@ def main
 			
 			
 		end
-		
 	end
+end
 
 
-
-
+def gen_format_line
+	return $SLURM_VALUES.join ','
 end
 
 
 main
+

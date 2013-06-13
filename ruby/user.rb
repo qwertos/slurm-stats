@@ -29,8 +29,12 @@ class User
 		
 		@jobs.each do |job|
 			start_dc = job.date_code_of :start
-
-			toReturn[start_dc] += job.seconds_between :start, :end
+			
+			if toReturn.has_key? start_dc then
+				toReturn[start_dc] += job.seconds_between :start, :end
+			else
+				toReturn[start_dc] = job.seconds_between :start, :end
+			end
 		end
 		
 		return toReturn

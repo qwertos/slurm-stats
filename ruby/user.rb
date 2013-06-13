@@ -39,6 +39,22 @@ class User
 		
 		return toReturn
 	end
+
+	def to_tsv
+		toReturn  = ""
+		toReturn += '# '
+		toReturn += @username
+		toReturn += "\n"
+
+		get_usage_days.to_a.each do |x|
+			toReturn += x.join( "\t" )
+			toReturn += "\n"
+		end
+
+		toReturn += "\n"
+
+		return toReturn
+	end
 end
 
 

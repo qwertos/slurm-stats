@@ -13,3 +13,14 @@ $SLURM_VALUES = [
 	:end
 ]
 
+
+#DO NOT modify these unless you know what you are doing
+
+class Job
+	@@TIME_KEYS = [
+		:submit,
+		:start,
+		:end
+	]
+end
+

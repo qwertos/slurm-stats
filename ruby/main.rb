@@ -20,10 +20,20 @@ def main
 			temp_job = Hash[ $SLURM_VALUES.zip(splitted)]
 			
 			$JOBS[temp_job['jobid']] = temp_job
-			
-			
+
+			if $USERS.has_key? temp_job["user"] then
+				$USERS[temp_job["user"]].add_job temp_job
+			else
+				temp_user = User.new
+				temp_user.add_job temp_job
+				temp_user.username = temp_job["user"]
+				$USERS[temp_job["user"]] = temp_user
+			end
 		end
 	end
+
+	
+
 end
 
 

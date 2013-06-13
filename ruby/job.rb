@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 
+require 'time'
 require './config.rb'
 
 class Job

@@ -1,7 +1,7 @@
 
 
 $TMP_DIR = ".."
-$PSV_DUMP = "#{$TMP_DIR}/dump.psv"
+$PSV_DUMP = "#{$TMP_DIR}/test.psv"
 $REGEN_PSV_DUMP = false
 $SLURM_VALUES = [
 	:jobid,

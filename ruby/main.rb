@@ -8,10 +8,14 @@ $USERS = {}
 $JOBS = {}
 
 def main
+	puts "Beginning Processing..."
 	if $REGEN_PSV_DUMP then
+		puts "Regening PSV dump..."
 		`sacct -L -P -n --format=#{gen_format_line} > #{$PSV_DUMP}`
+		puts "Regening PSV dump... DONE"
 	end
-
+	
+	puts "Processing PSV file..."
 	File.open( $PSV_DUMP , 'r' ) do |file|
 		
 		file.each_line do |line|

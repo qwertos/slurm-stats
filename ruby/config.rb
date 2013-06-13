@@ -2,7 +2,7 @@
 
 $TMP_DIR = "/dev/shm/accountingrb"
 $PSV_DUMP = "#{$TMP_DIR}/data.psv"
-$REGEN_PSV_DUMP = true
+$REGEN_PSV_DUMP = false
 $SLURM_VALUES = [
 	:jobid,
 	:partition,

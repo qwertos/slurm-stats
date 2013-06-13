@@ -17,17 +17,17 @@ def main
 		file.each_line do |line|
 			splitted = line.split( /\|/, $SLURM_VALUES.size )
 			
-			temp_job = Hash[ $SLURM_VALUES.zip(splitted)]
+			temp_job = Job.new(Hash[ $SLURM_VALUES.zip(splitted)])
 			
-			$JOBS[temp_job[:jobid]] = temp_job
+			$JOBS[temp_job.data[:jobid]] = temp_job
 
-			if $USERS.has_key? temp_job[:jobid] then
-				$USERS[temp_job[:user]].add_job temp_job
+			if $USERS.has_key? temp_job.data[:jobid] then
+				$USERS[temp_job.data[:user]].add_job temp_job
 			else
 				temp_user = User.new
 				temp_user.add_job temp_job
-				temp_user.username = temp_job[:user]
-				$USERS[temp_job[:user]] = temp_user
+				temp_user.username = temp_job.data[:user]
+				$USERS[temp_job.data[:user]] = temp_user
 			end
 		end
 	end

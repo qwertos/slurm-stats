@@ -16,7 +16,11 @@ class User
 	end
 
 	def total_time_elapsed
-		
+		toReturn = 0
+		@jobs.each do |x|
+			toReturn += x.seconds_between :start, :end
+		end
+		return toReturn
 	end
 end
 

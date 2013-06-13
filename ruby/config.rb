@@ -1,6 +1,6 @@
 
 
-$TMP_DIR = "/dev/shm/accounting/"
+$TMP_DIR = "../"
 $PSV_DUMP = "#{$TMP_DIR}/dump.psv"
 $REGEN_PSV_DUMP = false
 $SLURM_VALUES = [

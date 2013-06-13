@@ -15,7 +15,7 @@ class Job
 	private
 	def convert_time key
 		if @data.has_key? key then
-			tmp = @data[key].copy
+			tmp = @data[key]
 			time = Time.parse tmp
 			@data[key] = time
 		end

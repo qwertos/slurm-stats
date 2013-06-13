@@ -37,7 +37,7 @@ def main
 	end
 
 	$USERS.each do |key, value|
-		File.open( "#{$USER_USE_DIR}/#{key}.dat" , "rw" ) do |file|
+		File.open( "#{$USER_USE_DIR}/#{key}.dat" , "w" ) do |file|
 			file.puts value.to_tsv
 		end
 	end

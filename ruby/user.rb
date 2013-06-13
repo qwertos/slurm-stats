@@ -1,13 +1,18 @@
 #!/usr/bin/ruby
 
-require './job.rb'
+#require './job.rb'
 
 class User
-	attr_accessor :jobs, :username
-	
+	attr_accessor :username
+	attr_reader :jobs
+
 	def initialize 
 		@username = ""
 		@jobs = []
+	end
+
+	def add_job job
+		@jobs.push job
 	end
 end
 

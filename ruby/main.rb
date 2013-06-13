@@ -21,7 +21,7 @@ def main
 			
 			$JOBS[temp_job.data[:jobid]] = temp_job
 
-			if $USERS.has_key? temp_job.data[:jobid] then
+			if $USERS.has_key? temp_job.data[:user] then
 				$USERS[temp_job.data[:user]].add_job temp_job
 			else
 				temp_user = User.new

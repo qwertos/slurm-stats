@@ -8,7 +8,9 @@ $USERS = {}
 $JOBS = {}
 
 def main
-#	`sacct -L -P --starttime=0601 -n --format=jobid,partition,user,elapsed,submit,start,end > #{$PSV_DUMP}`
+	if $REGEN_PSV_DUMP then
+		`sacct -L -P --starttime=0601 -n --format=jobid,partition,user,elapsed,submit,start,end > #{$PSV_DUMP}`
+	end
 
 	File.open( $PSV_DUMP , 'r' ) do |file|
 		

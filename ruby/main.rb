@@ -1,8 +1,8 @@
 #!/usr/bin/ruby
 
-include './user.rb'
-include './job.rb'
-include './config.rb'
+require './user.rb'
+require './job.rb'
+require './config.rb'
 
 $USERS = {}
 $JOBS = {}

@@ -68,9 +68,11 @@ def gen_plot_file
 		file.puts "set ylabel 'time used for jobs started at datestamp'"
 		file.puts ""
 		file.print "plot "
+		plot_entries = []
 		$USERS.each do |key, value|
-			file.print "'#{$USER_USE_DIR}/#{key}.dat' using 1:2 title '#{key}' with linespoints , "
+			plot_entries.push " '#{$USER_USE_DIR}/#{key}.dat' using 1:2 title '#{key}' with points "
 		end
+		file.puts( plot_entries.join(','))
 		file.puts ""
 	end
 end

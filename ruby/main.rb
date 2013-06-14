@@ -86,7 +86,7 @@ def gen_user_use_plot
 		file.print "plot "
 		plot_entries = []
 		$USERS.each do |key, value|
-			plot_entries.push " '< sort #{$USER_USE_DIR}/#{key}.dat' using 1:2 title '#{key}' with points "
+			plot_entries.push " '< sort #{$USER_USE_DIR}/#{key}.dat' using 1:2 title '#{key}' with linespoints "
 		end
 		file.puts( plot_entries.join(','))
 		file.puts ""
@@ -110,7 +110,7 @@ def gen_total_use_plot
 		file.puts "set xlabel 'datestamp'"
 		file.puts "set ylabel 'time used for jobs started at datestamp'"
 		file.puts ""
-		file.puts "plot '< sort -n #{$TMP_DIR}/totalusage.dat' using 1:2 title 'Total Usage' with points"
+		file.puts "plot '< sort -n #{$TMP_DIR}/totalusage.dat' using 1:2 title 'Total Usage' with linespoints"
 	end
 end
 		

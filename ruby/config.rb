@@ -4,7 +4,7 @@ $TMP_DIR = "/dev/shm/accountingrb"
 $PSV_DUMP = "#{$TMP_DIR}/data.psv"
 $USER_USE_DIR = "#{$TMP_DIR}/users"
 $REGEN_PSV_DUMP = false
-$PLOT_FILE = "/syslinux/useruse.gnuplot"
+$PLOT_SCRIPT_DIR = "/syslinux/plots"
 $SLURM_VALUES = [
 	:jobid,
 	:partition,

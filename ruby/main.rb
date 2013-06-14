@@ -42,13 +42,37 @@ def main
 		end
 	end
 
-		
+	gen_plot_file	
 
 end
 
 
 def gen_format_line
 	return $SLURM_VALUES.join ','
+end
+
+def gen_plot_file
+	File.open( $PLOT_FILE , "w" ) do |file|
+		file.puts "#!/usr/bin/gnuplot"
+		file.puts ""
+		file.puts "set terminal postscript"
+		file.puts "set output 'plot.ps'"
+		file.puts "set autoscale"
+		file.puts "unset log"
+		file.puts "unset label"
+		file.puts "set xtic auto"
+		file.puts "set ytic auto"
+		file.puts ""
+		file.puts "set title 'Slurm user usage over time'"
+		file.puts "set xlabel 'datestamp'"
+		file.puts "set ylabel 'time used for jobs started at datestamp'"
+		file.puts ""
+		file.print "plot "
+		$USERS.each do |key, value|
+			file.print "'#{$USER_USE_DIR}/#{key}.dat' using 1:2 title '#{key}' with linespoints , "
+		end
+		file.puts ""
+	end
 end
 
 

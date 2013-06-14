@@ -50,7 +50,7 @@ def main
 	puts "Generating total usage tsv file... "
 	total_user = User.new
 	total_user.username = "Total Usage"
-	$JOBS.each do |job|
+	$JOBS.each do |id, job|
 		total_user.add_job job
 	end
 	File.open( "#{$TMP_DIR}/totalusage.dat" , 'w' ) do |file|
